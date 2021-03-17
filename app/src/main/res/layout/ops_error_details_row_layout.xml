@@ -12,7 +12,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/ops_error_details_row_materialCardView"
+        android:id="@+id/placeholder_ops_error_details_row_materialCardView"
         app:cardCornerRadius="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/ops_error_details_row_error_count_textView"
+                android:id="@+id/placeholder_ops_error_details_row_error_count_textView"
                 convertToFormatDateTime="@{item.date}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                 tools:text="2021-03-16 7pm" />
 
             <TextView
-                android:id="@+id/ops_error_details_row_source_textView"
+                android:id="@+id/placeholder_ops_error_details_row_source_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -47,9 +47,9 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/ops_error_details_row_error_count_textView"
-                app:layout_constraintStart_toStartOf="@+id/ops_error_details_row_error_count_textView"
-                app:layout_constraintTop_toBottomOf="@+id/ops_error_details_row_error_count_textView"
+                app:layout_constraintEnd_toEndOf="@+id/placeholder_ops_error_details_row_error_count_textView"
+                app:layout_constraintStart_toStartOf="@+id/placeholder_ops_error_details_row_error_count_textView"
+                app:layout_constraintTop_toBottomOf="@+id/placeholder_ops_error_details_row_error_count_textView"
                 tools:text="MSTProc-FLEETPULS-SA" />
 
 
