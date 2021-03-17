@@ -1,9 +1,8 @@
 package com.angelorobson.monitorerrorapp.models
 
-import com.squareup.moshi.JsonClass
-
+import java.util.Date
 
 data class OpsErrorDetailsModel(
-    val date: String,
+    val date: Date,
     val name: String
 )
