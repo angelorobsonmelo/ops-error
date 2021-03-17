@@ -41,7 +41,13 @@ class OpsErrorsViewModel(
     }
 
     fun navigateToOpsErrorDetails(source: String, hours: Int) {
-        navigator.to(OpsErrorFragmentDirections.navigateToOpsErrorDetailsFragment(source, hours))
+        navigator.to(
+            OpsErrorFragmentDirections.navigateToOpsErrorDetailsFragment(
+                source = source,
+                hours = hours,
+                title = source
+            )
+        )
     }
 
 }

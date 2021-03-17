@@ -17,13 +17,18 @@
     <fragment
         android:id="@+id/opsErrorDetailsFragment"
         android:name="com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.OpsErrorDetailsFragment"
-        android:label="Ops Error Details"
-        tools:layout="@layout/fragment_ops_error_details" >
+        android:label="{title}"
+        tools:layout="@layout/fragment_ops_error_details">
         <argument
             android:name="source"
             app:argType="string" />
         <argument
             android:name="hours"
             app:argType="integer" />
+
+        <argument
+            android:name="title"
+            app:argType="string" />
+
     </fragment>
 </navigation>
