@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.angelorobson.monitorerrorapp.R
+import com.angelorobson.monitorerrorapp.databinding.FragmentOpsErrorBinding
 import com.angelorobson.monitorerrorapp.di.MonitorErrorComponent
 import com.angelorobson.monitorerrorapp.ui.viewmodels.OpsErrorsViewModel
 import com.angelorobson.monitorerrorapp.utils.NetworkResult
@@ -18,13 +18,14 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class OpsErrorFragment : Fragment() {
 
     private val viewModel: OpsErrorsViewModel by viewModel()
+    private lateinit var binding: FragmentOpsErrorBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ops_error, container, false)
+    ): View {
+        binding = FragmentOpsErrorBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
