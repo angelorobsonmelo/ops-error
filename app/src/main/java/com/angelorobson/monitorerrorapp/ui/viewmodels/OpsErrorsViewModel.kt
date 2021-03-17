@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.angelorobson.monitorerrorapp.models.OpsErrorDetailsModel
 import com.angelorobson.monitorerrorapp.models.OpsErrorModel
+import com.angelorobson.monitorerrorapp.ui.fragments.opserror.OpsErrorFragmentDirections
 import com.angelorobson.monitorerrorapp.usecases.OpsErrorsUseCase
+import com.angelorobson.monitorerrorapp.utils.NavigationNavigator
 import com.angelorobson.monitorerrorapp.utils.NetworkResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.catch
@@ -15,14 +17,13 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
-class OpsErrorsViewModel (private val useCase: OpsErrorsUseCase) : ViewModel() {
+class OpsErrorsViewModel(
+    private val useCase: OpsErrorsUseCase,
+    private val navigator: NavigationNavigator
+) : ViewModel() {
 
     private val _getErrorResponse = MutableLiveData<NetworkResult<List<OpsErrorModel>>>()
     val getErrorResponse: LiveData<NetworkResult<List<OpsErrorModel>>> get() = _getErrorResponse
-
-    private val _getErrorDetailsResponse =
-        MutableLiveData<NetworkResult<List<OpsErrorDetailsModel>>>()
-    val getErrorDetailsResponse: LiveData<NetworkResult<List<OpsErrorDetailsModel>>> get() = _getErrorDetailsResponse
 
     fun getOpsErrors(hours: Int = 4) {
         viewModelScope.launch {
@@ -39,19 +40,8 @@ class OpsErrorsViewModel (private val useCase: OpsErrorsUseCase) : ViewModel() {
         }
     }
 
-    fun getOpsErrorDetails(source: String, hours: Int = 4) {
-        viewModelScope.launch {
-            useCase.getOpsErrorDetails(source, hours)
-                .onStart {
-                    _getErrorDetailsResponse.value = NetworkResult.Loading()
-                }
-                .catch {
-                    _getErrorDetailsResponse.value = NetworkResult.Error(it.message)
-
-                }
-                .collect {
-                    _getErrorDetailsResponse.value = NetworkResult.Success(it)
-                }
-        }
+    fun navigateToOpsErrorDetails(source: String, hours: Int) {
+        navigator.to(OpsErrorFragmentDirections.navigateToOpsErrorDetailsFragment(source, hours))
     }
+
 }

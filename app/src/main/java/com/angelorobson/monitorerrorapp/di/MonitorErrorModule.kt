@@ -4,11 +4,11 @@ import com.angelorobson.monitorerrorapp.converters.OpsErrorConverter
 import com.angelorobson.monitorerrorapp.converters.OpsErrorDetailsConverter
 import com.angelorobson.monitorerrorapp.repository.OpsErrorRepository
 import com.angelorobson.monitorerrorapp.repository.remote.OpsErrorService
+import com.angelorobson.monitorerrorapp.ui.viewmodels.OpsErrorDetailsViewModel
 import com.angelorobson.monitorerrorapp.ui.viewmodels.OpsErrorsViewModel
 import com.angelorobson.monitorerrorapp.usecases.OpsErrorsUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.KoinComponent
 import org.koin.dsl.module
 
 
@@ -32,7 +32,8 @@ private val useCaseModules = module(override = true) {
 
 @ExperimentalCoroutinesApi
 private val viewModelModules = module(override = true) {
-    viewModel { OpsErrorsViewModel(get()) }
+    viewModel { OpsErrorsViewModel(get(), get()) }
+    viewModel { OpsErrorDetailsViewModel(get()) }
 }
 
 @ExperimentalCoroutinesApi

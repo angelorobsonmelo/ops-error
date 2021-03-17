@@ -9,5 +9,21 @@
         android:id="@+id/opsErrorFragment"
         android:name="com.angelorobson.monitorerrorapp.ui.fragments.opserror.OpsErrorFragment"
         android:label="Ops Error"
-        tools:layout="@layout/fragment_ops_error" />
+        tools:layout="@layout/fragment_ops_error">
+        <action
+            android:id="@+id/navigate_to_opsErrorDetailsFragment"
+            app:destination="@id/opsErrorDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/opsErrorDetailsFragment"
+        android:name="com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.OpsErrorDetailsFragment"
+        android:label="Ops Error Details"
+        tools:layout="@layout/fragment_ops_error_details" >
+        <argument
+            android:name="source"
+            app:argType="string" />
+        <argument
+            android:name="hours"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -24,10 +24,11 @@ class OpsErrorFragment : Fragment() {
     private val viewModel: OpsErrorsViewModel by viewModel()
     private lateinit var binding: FragmentOpsErrorBinding
     private lateinit var mLayoutManager: LinearLayoutManager
+    private var hour = 4
 
     private val mAdapter by lazy {
         OpsErrorAdapter {
-            print("dsfd")
+            viewModel.navigateToOpsErrorDetails(it.source, hour)
         }
     }
 
@@ -60,7 +61,7 @@ class OpsErrorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         MonitorErrorComponent.inject()
 
-        viewModel.getOpsErrors(4)
+        viewModel.getOpsErrors(hour)
         bindViewModel()
     }
 
