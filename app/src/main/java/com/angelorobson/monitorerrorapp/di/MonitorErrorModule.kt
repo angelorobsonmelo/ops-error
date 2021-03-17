@@ -41,8 +41,3 @@ internal val monitorErrorModules = serviceModules +
         repositoryModules +
         useCaseModules +
         viewModelModules
-
-@ExperimentalCoroutinesApi
-object MonitorModule : KoinComponent {
-    fun inject() = loadMonitorErrorModules()
-}

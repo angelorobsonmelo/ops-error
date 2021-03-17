@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.angelorobson.monitorerrorapp.R
-import com.angelorobson.monitorerrorapp.di.MonitorModule
+import com.angelorobson.monitorerrorapp.di.MonitorErrorComponent
 import com.angelorobson.monitorerrorapp.ui.viewmodels.OpsErrorsViewModel
 import com.angelorobson.monitorerrorapp.utils.NetworkResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -29,7 +29,7 @@ class OpsErrorFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        MonitorModule.inject()
+        MonitorErrorComponent.inject()
 
         viewModel.getOpsErrors(4)
         bindViewModel()
