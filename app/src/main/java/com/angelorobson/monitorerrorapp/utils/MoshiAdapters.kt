@@ -14,7 +14,7 @@ var customDateAdapter: Any = object : Any() {
 
     init {
         dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:SSS")
-        (dateFormat as SimpleDateFormat).timeZone = TimeZone.getTimeZone("UTC")
+        (dateFormat as SimpleDateFormat).timeZone = TimeZone.getDefault()
     }
 
     @ToJson
