@@ -2,14 +2,13 @@ package com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.angelorobson.monitorerrorapp.R
 import com.angelorobson.monitorerrorapp.databinding.FragmentOpsErrorDetailsBinding
 import com.angelorobson.monitorerrorapp.di.MonitorErrorComponent
 import com.angelorobson.monitorerrorapp.ui.MainActivity
@@ -49,6 +48,7 @@ class OpsErrorDetailsFragment : Fragment() {
     ): View {
         binding = FragmentOpsErrorDetailsBinding.inflate(inflater, container, false)
 
+        setHasOptionsMenu(true)
         initClickListener()
         setupRecyclerView()
         return binding.root
@@ -81,6 +81,20 @@ class OpsErrorDetailsFragment : Fragment() {
 
         getErrorDetails()
         bindViewModel()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.ops_error_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_refresh -> {
+                getErrorDetails()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun getErrorDetails() {

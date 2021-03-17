@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MonitorErrorApp</string>
     <string name="try_again">Try Again</string>
+    <string name="menu_refresh">Refresh</string>
 </resources>

@@ -2,9 +2,7 @@ package com.angelorobson.monitorerrorapp.ui.fragments.opserror
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -39,14 +37,29 @@ class OpsErrorFragment : Fragment() {
     ): View {
         binding = FragmentOpsErrorBinding.inflate(inflater, container, false)
 
+        setHasOptionsMenu(true)
         setupRecyclerView()
         initClickListener()
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.ops_error_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+         when(item.itemId) {
+             R.id.menu_refresh -> {
+                 getOpsErrors()
+             }
+         }
+
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun initClickListener() {
         binding.opsErrorTryAgainButton.setOnClickListener {
-            viewModel.getOpsErrors()
+            getOpsErrors()
         }
     }
 
@@ -69,7 +82,7 @@ class OpsErrorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         MonitorErrorComponent.inject()
 
-        viewModel.getOpsErrors(hour)
+        getOpsErrors()
         bindViewModel()
     }
 
@@ -96,6 +109,10 @@ class OpsErrorFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun getOpsErrors() {
+        viewModel.getOpsErrors()
     }
 
     private fun hideButtonTryAgain() {
