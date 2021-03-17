@@ -6,7 +6,11 @@ import com.angelorobson.monitorerrorapp.R
 import com.angelorobson.monitorerrorapp.utils.ActivityService
 import com.angelorobson.monitorerrorapp.utils.BaseWebService
 import com.angelorobson.monitorerrorapp.utils.NavigationNavigator
+import com.angelorobson.monitorerrorapp.utils.customDateAdapter
+import com.squareup.moshi.Moshi
+import okhttp3.OkHttpClient
 import org.koin.dsl.module
+import java.util.concurrent.TimeUnit
 
 private const val HALF = 2
 
@@ -26,6 +30,19 @@ val applicationModules = module(override = true) {
 
     single {
         ActivityService()
+    }
+
+    single {
+        val baseWebService = get<BaseWebService>()
+
+        OkHttpClient.Builder()
+            .connectTimeout(baseWebService.connectTimeout, TimeUnit.MILLISECONDS)
+            .readTimeout(baseWebService.readTimeout, TimeUnit.MILLISECONDS)
+            .writeTimeout(baseWebService.writeTimeout, TimeUnit.MILLISECONDS).build()
+    }
+
+    single {
+        Moshi.Builder().add(customDateAdapter).build()
     }
 
 }

@@ -1,5 +1,6 @@
 package com.angelorobson.monitorerrorapp.utils
 
+import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import org.koin.core.KoinComponent
 import org.koin.core.get
@@ -16,24 +17,18 @@ abstract class WebService<T> {
 
         fun getInstance(): Retrofit {
             val baseWebService: BaseWebService = get()
-            val okHttpClient = OkHttpClient.Builder()
-                .connectTimeout(baseWebService.connectTimeout, TimeUnit.MILLISECONDS)
-                .readTimeout(baseWebService.readTimeout, TimeUnit.MILLISECONDS)
-                .writeTimeout(baseWebService.writeTimeout, TimeUnit.MILLISECONDS).build()
-
-
-            println("baseWebService " + baseWebService.baseUrl)
+            val okHttpClient: OkHttpClient = get()
+            val moshi: Moshi = get()
 
             if (INSTANCE != null) {
                 return INSTANCE as Retrofit
             }
 
             synchronized(this) {
-
                 val retrofit: Retrofit = Retrofit.Builder()
                     .baseUrl(baseWebService.baseUrl)
                     .client(okHttpClient)
-                    .addConverterFactory(MoshiConverterFactory.create())
+                    .addConverterFactory(MoshiConverterFactory.create(moshi))
                     .build()
 
                 INSTANCE = retrofit

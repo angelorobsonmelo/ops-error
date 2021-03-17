@@ -22,7 +22,7 @@ class OpsErrorDetailsViewModel(private val useCase: OpsErrorsUseCase) : ViewMode
         MutableLiveData<NetworkResult<List<OpsErrorDetailsModel>>>()
     val getErrorDetailsResponse: LiveData<NetworkResult<List<OpsErrorDetailsModel>>> get() = _getErrorDetailsResponse
 
-    fun getOpsErrorDetails(source: String, hours: Int = 4) {
+    fun getOpsErrorDetails(source: String, hours: Int) {
         viewModelScope.launch {
             useCase.getOpsErrorDetails(source, hours)
                 .onStart {
