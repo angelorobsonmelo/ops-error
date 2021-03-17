@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -48,8 +49,15 @@ class OpsErrorDetailsFragment : Fragment() {
     ): View {
         binding = FragmentOpsErrorDetailsBinding.inflate(inflater, container, false)
 
+        initClickListener()
         setupRecyclerView()
         return binding.root
+    }
+
+    private fun initClickListener() {
+        binding.opsErrorDetailsTryAgainButton.setOnClickListener {
+            getErrorDetails()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -71,20 +79,32 @@ class OpsErrorDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         MonitorErrorComponent.inject()
 
-        viewModel.getOpsErrorDetails(source = args.source, hours = args.hours)
+        getErrorDetails()
         bindViewModel()
+    }
+
+    private fun getErrorDetails() {
+        viewModel.getOpsErrorDetails(source = args.source, hours = args.hours)
     }
 
     private fun bindViewModel() {
         viewModel.getErrorDetailsResponse.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is NetworkResult.Error -> {
+                    hideRecyclerView()
+                    showButtonTryAgain()
                     hideShimmerEffect()
+                    Toast.makeText(requireContext(), result.message.toString(), Toast.LENGTH_SHORT)
+                        .show()
                 }
                 is NetworkResult.Loading -> {
+                    hideButtonTryAgain()
+                    showRecyclerView()
                     showShimmerEffect()
                 }
                 is NetworkResult.Success -> {
+                    showRecyclerView()
+                    hideButtonTryAgain()
                     hideShimmerEffect()
                     mAdapter.submitList(result.data)
                 }
@@ -98,6 +118,22 @@ class OpsErrorDetailsFragment : Fragment() {
 
     private fun hideShimmerEffect() {
         binding.opsErrorDetailsRecyclerView.hideShimmer()
+    }
+
+    private fun hideButtonTryAgain() {
+        binding.opsErrorDetailsTryAgainButton.visibility = View.GONE
+    }
+
+    private fun showButtonTryAgain() {
+        binding.opsErrorDetailsTryAgainButton.visibility = View.VISIBLE
+    }
+
+    private fun showRecyclerView() {
+        binding.opsErrorDetailsRecyclerView.visibility = View.VISIBLE
+    }
+
+    private fun hideRecyclerView() {
+        binding.opsErrorDetailsRecyclerView.visibility = View.GONE
     }
 
 }
