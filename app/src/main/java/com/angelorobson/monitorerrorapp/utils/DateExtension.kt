@@ -14,11 +14,11 @@ fun Date.formatToServerDateTimeDefaults(): String {
 fun Date.formatDateTime(): String {
     return when (Locale.getDefault().language) {
         "en" -> {
-            val sdf = SimpleDateFormat("yyyy-MM-dd - hh:mm aa", Locale.ENGLISH)
+            val sdf = SimpleDateFormat("yyyy-MM-dd - HH:mm:SSS", Locale.ENGLISH)
             sdf.format(this)
         }
         else -> {
-            val sdf = SimpleDateFormat("dd/MM/yyyy - HH:mm", Locale("pt", "BR"))
+            val sdf = SimpleDateFormat("dd/MM/yyyy - HH:mm:SSS", Locale("pt", "BR"))
             sdf.format(this)
         }
     }
