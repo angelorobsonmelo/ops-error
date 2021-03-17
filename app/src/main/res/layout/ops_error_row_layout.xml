@@ -25,7 +25,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/ops_error_row_error_count_textView"
+                android:id="@+id/placeholder_ops_error_row_error_count_textView"
                 convertIntToString="@{item.errorsCount}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -39,17 +39,17 @@
                 tools:text="17" />
 
             <TextView
-                android:id="@+id/ops_error_row_source_textView"
+                android:id="@+id/placeholder_ops_error_row_source_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="8dp"
                 android:text="@{item.source}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintBottom_toBottomOf="@+id/ops_error_row_error_count_textView"
+                app:layout_constraintBottom_toBottomOf="@+id/placeholder_ops_error_row_error_count_textView"
                 app:layout_constraintEnd_toStartOf="@+id/imageView"
-                app:layout_constraintStart_toEndOf="@+id/ops_error_row_error_count_textView"
-                app:layout_constraintTop_toTopOf="@+id/ops_error_row_error_count_textView"
+                app:layout_constraintStart_toEndOf="@+id/placeholder_ops_error_row_error_count_textView"
+                app:layout_constraintTop_toTopOf="@+id/placeholder_ops_error_row_error_count_textView"
                 tools:text="MSTProc-FLEETPULS-SA" />
 
             <ImageView
@@ -57,9 +57,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/ops_error_row_error_count_textView"
+                app:layout_constraintBottom_toBottomOf="@+id/placeholder_ops_error_row_error_count_textView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/ops_error_row_error_count_textView"
+                app:layout_constraintTop_toTopOf="@+id/placeholder_ops_error_row_error_count_textView"
                 app:srcCompat="@drawable/ic_arrow_forward" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

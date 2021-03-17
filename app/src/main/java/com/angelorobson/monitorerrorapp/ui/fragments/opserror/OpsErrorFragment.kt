@@ -69,18 +69,25 @@ class OpsErrorFragment : Fragment() {
         viewModel.getErrorResponse.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is NetworkResult.Error -> {
-                    Log.d("NetworkResult.Error", "NetworkResult.Error")
+                    hideShimmerEffect()
                 }
                 is NetworkResult.Loading -> {
-                    Log.d("NetworkResult.Loading", "NetworkResult.Loading")
+                    showShimmerEffect()
                 }
                 is NetworkResult.Success -> {
+                    hideShimmerEffect()
                     mAdapter.submitList(result.data)
-                    Log.d("NetworkResult.Success", "NetworkResult.Success")
-
                 }
             }
         })
+    }
+
+    private fun showShimmerEffect() {
+        binding.opsErrorRecyclerView.showShimmer()
+    }
+
+    private fun hideShimmerEffect() {
+        binding.opsErrorRecyclerView.hideShimmer()
     }
 
 }
