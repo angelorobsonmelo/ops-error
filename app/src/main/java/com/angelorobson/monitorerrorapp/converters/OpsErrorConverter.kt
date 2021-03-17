@@ -6,7 +6,7 @@ import com.angelorobson.monitorerrorapp.models.OpsErrorModel
 class OpsErrorConverter {
 
     fun convert(opsErrorDto: OpsErrorDto) = OpsErrorModel(
-        noErrors = opsErrorDto.noErrors,
+        errorsCount = opsErrorDto.noErrors,
         source = opsErrorDto.source
     )
 }
