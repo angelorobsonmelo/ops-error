@@ -11,60 +11,51 @@
             type="com.angelorobson.monitorerrorapp.models.OpsErrorModel" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ops_error_row_materialCardView"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/placeholder_ops_error_row_error_count_textView"
+            convertIntToString="@{item.errorsCount}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="17" />
 
-            <TextView
-                android:id="@+id/placeholder_ops_error_row_error_count_textView"
-                convertIntToString="@{item.errorsCount}"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="17" />
+        <TextView
+            android:id="@+id/placeholder_ops_error_row_source_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{item.source}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder_ops_error_row_error_count_textView"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/placeholder_ops_error_row_error_count_textView"
+            app:layout_constraintTop_toTopOf="@+id/placeholder_ops_error_row_error_count_textView"
+            tools:text="MSTProc-FLEETPULS-SA" />
 
-            <TextView
-                android:id="@+id/placeholder_ops_error_row_source_textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="@{item.source}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintBottom_toBottomOf="@+id/placeholder_ops_error_row_error_count_textView"
-                app:layout_constraintEnd_toStartOf="@+id/imageView"
-                app:layout_constraintStart_toEndOf="@+id/placeholder_ops_error_row_error_count_textView"
-                app:layout_constraintTop_toTopOf="@+id/placeholder_ops_error_row_error_count_textView"
-                tools:text="MSTProc-FLEETPULS-SA" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/placeholder_ops_error_row_error_count_textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/placeholder_ops_error_row_error_count_textView"
+            app:srcCompat="@drawable/ic_arrow_forward" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/placeholder_ops_error_row_error_count_textView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/placeholder_ops_error_row_error_count_textView"
-                app:srcCompat="@drawable/ic_arrow_forward" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
