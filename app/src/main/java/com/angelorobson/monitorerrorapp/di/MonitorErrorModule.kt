@@ -8,16 +8,13 @@ import com.angelorobson.monitorerrorapp.ui.viewmodels.OpsErrorsViewModel
 import com.angelorobson.monitorerrorapp.usecases.OpsErrorsUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.KoinComponent
 import org.koin.dsl.module
 
-@ExperimentalCoroutinesApi
-private val viewModelModules = module(override = true) {
-    viewModel { OpsErrorsViewModel(get()) }
-}
 
-@ExperimentalCoroutinesApi
-private val useCaseModules = module(override = true) {
-    single { OpsErrorsUseCase(get(), get(), get()) }
+private val converterModules = module(override = true) {
+    single { OpsErrorConverter() }
+    single { OpsErrorDetailsConverter() }
 }
 
 private val repositoryModules = module(override = true) {
@@ -28,14 +25,24 @@ private val serviceModules = module(override = true) {
     single { OpsErrorService().api() }
 }
 
-private val converterModules = module(override = true) {
-    single { OpsErrorConverter() }
-    single { OpsErrorDetailsConverter() }
+@ExperimentalCoroutinesApi
+private val useCaseModules = module(override = true) {
+    factory { OpsErrorsUseCase(get(), get(), get()) }
 }
 
 @ExperimentalCoroutinesApi
-internal val monitorErrorModules = viewModelModules +
-        useCaseModules +
+private val viewModelModules = module(override = true) {
+    viewModel { OpsErrorsViewModel(get()) }
+}
+
+@ExperimentalCoroutinesApi
+internal val monitorErrorModules = serviceModules +
+        converterModules +
         repositoryModules +
-        serviceModules +
-        converterModules
+        useCaseModules +
+        viewModelModules
+
+@ExperimentalCoroutinesApi
+object MonitorModule : KoinComponent {
+    fun inject() = loadMonitorErrorModules()
+}

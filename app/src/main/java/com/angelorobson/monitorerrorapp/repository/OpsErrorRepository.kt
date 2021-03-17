@@ -6,7 +6,6 @@ import com.angelorobson.monitorerrorapp.repository.remote.OpsErrorApi
 
 class OpsErrorRepository(private val api: OpsErrorApi) {
 
-
     suspend fun getOpsErrorDetail(source: String, hour: Int): List<OpsErrorDetailsDto> =
         api.getOpsErrorDetail(source, hour)
 

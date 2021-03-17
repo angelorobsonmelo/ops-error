@@ -5,6 +5,7 @@ import org.koin.core.KoinComponent
 import org.koin.core.get
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 
 abstract class WebService<T> {
 
@@ -15,7 +16,11 @@ abstract class WebService<T> {
 
         fun getInstance(): Retrofit {
             val baseWebService: BaseWebService = get()
-            val okHttpClient: OkHttpClient = get()
+            val okHttpClient = OkHttpClient.Builder()
+                .connectTimeout(baseWebService.connectTimeout, TimeUnit.MILLISECONDS)
+                .readTimeout(baseWebService.readTimeout, TimeUnit.MILLISECONDS)
+                .writeTimeout(baseWebService.writeTimeout, TimeUnit.MILLISECONDS).build()
+
 
             println("baseWebService " + baseWebService.baseUrl)
 

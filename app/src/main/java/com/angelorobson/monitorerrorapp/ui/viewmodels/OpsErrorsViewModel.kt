@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
-class OpsErrorsViewModel constructor(private val useCase: OpsErrorsUseCase) : ViewModel() {
+class OpsErrorsViewModel (private val useCase: OpsErrorsUseCase) : ViewModel() {
 
     private val _getErrorResponse = MutableLiveData<NetworkResult<List<OpsErrorModel>>>()
     val getErrorResponse: LiveData<NetworkResult<List<OpsErrorModel>>> get() = _getErrorResponse
