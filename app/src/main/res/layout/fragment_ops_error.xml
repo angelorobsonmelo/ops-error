@@ -6,15 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.opserror.OpsErrorFragment">
 
+    <LinearLayout
+        android:id="@+id/ops_error_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mediumGray"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/ops_error_total_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Total of 25 error in 2 hours"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
     <com.todkars.shimmer.ShimmerRecyclerView
         android:id="@+id/ops_error_recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ops_error_linearLayout"
         app:shimmer_recycler_item_count="3"
         app:shimmer_recycler_layout="@layout/placeholder_ops_error_row_layout" />
 

@@ -25,7 +25,7 @@ class OpsErrorsViewModel(
     private val _getErrorResponse = MutableLiveData<NetworkResult<List<OpsErrorModel>>>()
     val getErrorResponse: LiveData<NetworkResult<List<OpsErrorModel>>> get() = _getErrorResponse
 
-    fun getOpsErrors(hours: Int = 4) {
+    fun getOpsErrors(hours: Int) {
         viewModelScope.launch {
             useCase.getOpsErrors(hours)
                 .onStart {

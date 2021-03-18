@@ -1,9 +1,9 @@
 package com.angelorobson.monitorerrorapp.ui.fragments.opserror
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelorobson.monitorerrorapp.R
 import com.angelorobson.monitorerrorapp.databinding.FragmentOpsErrorBinding
 import com.angelorobson.monitorerrorapp.di.MonitorErrorComponent
+import com.angelorobson.monitorerrorapp.models.OpsErrorModel
 import com.angelorobson.monitorerrorapp.ui.adapters.OpsErrorAdapter
-import com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.OpsErrorDetailsFragmentArgs
 import com.angelorobson.monitorerrorapp.ui.viewmodels.OpsErrorsViewModel
 import com.angelorobson.monitorerrorapp.utils.NetworkResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -110,10 +110,19 @@ class OpsErrorFragment : Fragment() {
                     showRecyclerView()
                     hideButtonTryAgain()
                     hideShimmerEffect()
-                    mAdapter.submitList(result.data)
+                    populateScreen(result.data)
                 }
             }
         })
+    }
+
+    private fun populateScreen(result: List<OpsErrorModel>?) {
+        binding.opsErrorTotalTextView.text = HtmlCompat.fromHtml(
+            getString(R.string.some_text, result?.size, args.hour),
+            HtmlCompat.FROM_HTML_MODE_LEGACY
+        )
+
+        mAdapter.submitList(result)
     }
 
     private fun getOpsErrors() {

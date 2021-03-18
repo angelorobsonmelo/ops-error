@@ -3,8 +3,10 @@
     <string name="try_again">Try Again</string>
     <string name="menu_refresh">Refresh</string>
     <string name="menu_filter">Filter</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="select_hour">Select hour</string>
+
+    <string name="select_hour">Select time interval in hour</string>
     <string name="filter">Filter</string>
+    <string name="total_of_errors_24">Total of errors: 24</string>
+    <string name="some_text"><![CDATA[Total of <font color=\'#cc0029\'>%1$d</font> errors in %2$d hour(s)]]></string>
+
 </resources>
