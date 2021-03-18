@@ -118,7 +118,7 @@ class OpsErrorFragment : Fragment() {
 
     private fun populateScreen(result: List<OpsErrorModel>?) {
         binding.opsErrorTotalTextView.text = HtmlCompat.fromHtml(
-            getString(R.string.some_text, result?.size, args.hour),
+            getString(R.string.ops_error_info, result?.size, args.hour),
             HtmlCompat.FROM_HTML_MODE_LEGACY
         )
 

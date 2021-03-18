@@ -23,10 +23,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
-            tools:text="Total of 25 error in 2 hours"
-            android:textColor="@color/black" />
+            tools:text="Total of 25 error in 2 hours" />
 
     </LinearLayout>
 
@@ -35,7 +35,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -6,7 +6,7 @@
 
     <string name="select_hour">Select time interval in hour</string>
     <string name="filter">Filter</string>
-    <string name="total_of_errors_24">Total of errors: 24</string>
-    <string name="some_text"><![CDATA[Total of <font color=\'#cc0029\'>%1$d</font> errors in %2$d hour(s)]]></string>
+    <string name="ops_error_info"><![CDATA[Total of <font color=\'#cc0029\'>%1$d</font> type of sources errors in %2$d hour(s)]]></string>
+    <string name="total_of_exceptions"><![CDATA[<font color=\'#cc0029\'>%1$d</font> exceptions]]></string>
 
 </resources>
