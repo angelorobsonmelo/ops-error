@@ -7,6 +7,7 @@ import com.angelorobson.monitorerrorapp.repository.remote.OpsErrorService
 import com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.viewmodel.OpsErrorDetailsViewModel
 import com.angelorobson.monitorerrorapp.ui.fragments.opserror.viewmodel.OpsErrorsViewModel
 import com.angelorobson.monitorerrorapp.usecases.OpsErrorsUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -27,7 +28,7 @@ private val serviceModules = module(override = true) {
 
 @ExperimentalCoroutinesApi
 private val useCaseModules = module(override = true) {
-    factory { OpsErrorsUseCase(get(), get(), get()) }
+    factory { OpsErrorsUseCase(get(), get(), get(), Dispatchers.IO) }
 }
 
 @ExperimentalCoroutinesApi
