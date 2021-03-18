@@ -12,8 +12,8 @@ import com.angelorobson.monitorerrorapp.R
 import com.angelorobson.monitorerrorapp.databinding.FragmentOpsErrorBinding
 import com.angelorobson.monitorerrorapp.di.MonitorErrorComponent
 import com.angelorobson.monitorerrorapp.models.OpsErrorModel
-import com.angelorobson.monitorerrorapp.ui.adapters.OpsErrorAdapter
-import com.angelorobson.monitorerrorapp.ui.viewmodels.OpsErrorsViewModel
+import com.angelorobson.monitorerrorapp.ui.fragments.opserror.adapter.OpsErrorAdapter
+import com.angelorobson.monitorerrorapp.ui.fragments.opserror.viewmodel.OpsErrorsViewModel
 import com.angelorobson.monitorerrorapp.utils.NetworkResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel

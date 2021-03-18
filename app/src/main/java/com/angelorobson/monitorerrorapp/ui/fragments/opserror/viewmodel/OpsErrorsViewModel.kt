@@ -1,4 +1,4 @@
-package com.angelorobson.monitorerrorapp.ui.viewmodels
+package com.angelorobson.monitorerrorapp.ui.fragments.opserror.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

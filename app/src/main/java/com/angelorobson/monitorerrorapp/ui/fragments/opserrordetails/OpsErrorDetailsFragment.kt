@@ -1,7 +1,6 @@
 package com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.core.text.HtmlCompat
@@ -13,11 +12,9 @@ import com.angelorobson.monitorerrorapp.R
 import com.angelorobson.monitorerrorapp.databinding.FragmentOpsErrorDetailsBinding
 import com.angelorobson.monitorerrorapp.di.MonitorErrorComponent
 import com.angelorobson.monitorerrorapp.models.OpsErrorDetailsModel
-import com.angelorobson.monitorerrorapp.models.OpsErrorModel
 import com.angelorobson.monitorerrorapp.ui.MainActivity
-import com.angelorobson.monitorerrorapp.ui.adapters.OpsErrorAdapter
-import com.angelorobson.monitorerrorapp.ui.adapters.OpsErrorDetailsAdapter
-import com.angelorobson.monitorerrorapp.ui.viewmodels.OpsErrorDetailsViewModel
+import com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.adapter.OpsErrorDetailsAdapter
+import com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.viewmodel.OpsErrorDetailsViewModel
 import com.angelorobson.monitorerrorapp.utils.NetworkResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel

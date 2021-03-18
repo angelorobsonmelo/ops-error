@@ -1,4 +1,4 @@
-package com.angelorobson.monitorerrorapp.ui.adapters
+package com.angelorobson.monitorerrorapp.ui.fragments.opserror.adapter
 
 import com.angelorobson.monitorerrorapp.R
 import com.angelorobson.monitorerrorapp.databinding.OpsErrorRowLayoutBinding
