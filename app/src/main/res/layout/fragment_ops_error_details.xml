@@ -58,4 +58,10 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_errors_detail_main_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="ops_error_details_recyclerView,ops_error_linearLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

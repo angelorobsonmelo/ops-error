@@ -105,7 +105,7 @@ class OpsErrorDetailsFragment : Fragment() {
         viewModel.getErrorDetailsResponse.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is NetworkResult.Error -> {
-                    hideRecyclerView()
+                    hideGroupMainView()
                     showButtonTryAgain()
                     hideShimmerEffect()
                     Toast.makeText(requireContext(), result.message.toString(), Toast.LENGTH_SHORT)
@@ -113,11 +113,11 @@ class OpsErrorDetailsFragment : Fragment() {
                 }
                 is NetworkResult.Loading -> {
                     hideButtonTryAgain()
-                    showRecyclerView()
+                    showGroupMainView()
                     showShimmerEffect()
                 }
                 is NetworkResult.Success -> {
-                    showRecyclerView()
+                    showGroupMainView()
                     hideButtonTryAgain()
                     hideShimmerEffect()
                     populateScreen(result.data)
@@ -151,12 +151,12 @@ class OpsErrorDetailsFragment : Fragment() {
         binding.opsErrorDetailsTryAgainButton.visibility = View.VISIBLE
     }
 
-    private fun showRecyclerView() {
-        binding.opsErrorDetailsRecyclerView.visibility = View.VISIBLE
+    private fun showGroupMainView() {
+        binding.groupErrorsDetailMainView.visibility = View.VISIBLE
     }
 
-    private fun hideRecyclerView() {
-        binding.opsErrorDetailsRecyclerView.visibility = View.GONE
+    private fun hideGroupMainView() {
+        binding.groupErrorsDetailMainView.visibility = View.GONE
     }
 
 }
