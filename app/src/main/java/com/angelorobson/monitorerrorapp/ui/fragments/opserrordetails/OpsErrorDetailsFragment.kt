@@ -84,7 +84,7 @@ class OpsErrorDetailsFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.ops_error_menu, menu)
+        inflater.inflate(R.menu.ops_error_details_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

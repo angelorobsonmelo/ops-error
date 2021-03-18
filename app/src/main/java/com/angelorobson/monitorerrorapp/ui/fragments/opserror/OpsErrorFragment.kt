@@ -5,12 +5,14 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelorobson.monitorerrorapp.R
 import com.angelorobson.monitorerrorapp.databinding.FragmentOpsErrorBinding
 import com.angelorobson.monitorerrorapp.di.MonitorErrorComponent
 import com.angelorobson.monitorerrorapp.ui.adapters.OpsErrorAdapter
+import com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.OpsErrorDetailsFragmentArgs
 import com.angelorobson.monitorerrorapp.ui.viewmodels.OpsErrorsViewModel
 import com.angelorobson.monitorerrorapp.utils.NetworkResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -23,11 +25,11 @@ class OpsErrorFragment : Fragment() {
     private val viewModel: OpsErrorsViewModel by viewModel()
     private lateinit var binding: FragmentOpsErrorBinding
     private lateinit var mLayoutManager: LinearLayoutManager
-    private var hour = 4
+    private val args by navArgs<OpsErrorFragmentArgs>()
 
     private val mAdapter by lazy {
         OpsErrorAdapter {
-            viewModel.navigateToOpsErrorDetails(it.source, hour)
+            viewModel.navigateToOpsErrorDetails(it.source, args.hour)
         }
     }
 
@@ -48,11 +50,14 @@ class OpsErrorFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-         when(item.itemId) {
-             R.id.menu_refresh -> {
-                 getOpsErrors()
-             }
-         }
+        when (item.itemId) {
+            R.id.menu_refresh -> {
+                getOpsErrors()
+            }
+            R.id.menu_filter -> {
+                viewModel.navigateToFilterHour(args.hour)
+            }
+        }
 
         return super.onOptionsItemSelected(item)
     }
@@ -112,7 +117,7 @@ class OpsErrorFragment : Fragment() {
     }
 
     private fun getOpsErrors() {
-        viewModel.getOpsErrors()
+        viewModel.getOpsErrors(args.hour)
     }
 
     private fun hideButtonTryAgain() {

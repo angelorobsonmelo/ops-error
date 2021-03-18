@@ -40,6 +40,10 @@ class OpsErrorsViewModel(
         }
     }
 
+    fun navigateToFilterHour(hour: Int) {
+        navigator.to(OpsErrorFragmentDirections.actionOpsErrorFragmentToFilterHourFragment(hour))
+    }
+
     fun navigateToOpsErrorDetails(source: String, hours: Int) {
         navigator.to(
             OpsErrorFragmentDirections.navigateToOpsErrorDetailsFragment(

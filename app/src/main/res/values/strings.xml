@@ -2,4 +2,9 @@
     <string name="app_name">MonitorErrorApp</string>
     <string name="try_again">Try Again</string>
     <string name="menu_refresh">Refresh</string>
+    <string name="menu_filter">Filter</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select_hour">Select hour</string>
+    <string name="filter">Filter</string>
 </resources>
