@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelorobson.monitorerrorapp.R
 import com.angelorobson.monitorerrorapp.databinding.FragmentOpsErrorDetailsBinding
 import com.angelorobson.monitorerrorapp.di.MonitorErrorComponent
+import com.angelorobson.monitorerrorapp.models.OpsErrorDetailsModel
+import com.angelorobson.monitorerrorapp.models.OpsErrorModel
 import com.angelorobson.monitorerrorapp.ui.MainActivity
 import com.angelorobson.monitorerrorapp.ui.adapters.OpsErrorAdapter
 import com.angelorobson.monitorerrorapp.ui.adapters.OpsErrorDetailsAdapter
@@ -120,10 +123,19 @@ class OpsErrorDetailsFragment : Fragment() {
                     showRecyclerView()
                     hideButtonTryAgain()
                     hideShimmerEffect()
-                    mAdapter.submitList(result.data)
+                    populateScreen(result.data)
                 }
             }
         })
+    }
+
+    private fun populateScreen(result: List<OpsErrorDetailsModel>?) {
+        binding.opsErrorTotalTextView.text = HtmlCompat.fromHtml(
+            getString(R.string.ops_error_details_info, result?.size, args.hours),
+            HtmlCompat.FROM_HTML_MODE_LEGACY
+        )
+
+        mAdapter.submitList(result)
     }
 
     private fun showShimmerEffect() {

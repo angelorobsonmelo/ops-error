@@ -8,5 +8,6 @@
     <string name="filter">Filter</string>
     <string name="ops_error_info"><![CDATA[Total of <font color=\'#cc0029\'>%1$d</font> type of sources errors in %2$d hour(s)]]></string>
     <string name="total_of_exceptions"><![CDATA[<font color=\'#cc0029\'>%1$d</font> exceptions]]></string>
+    <string name="ops_error_details_info"><![CDATA[Total of <font color=\'#cc0029\'>%1$d</font> exceptions in %2$d hour(s)]]></string>
 
 </resources>
