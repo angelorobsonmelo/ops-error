@@ -17,6 +17,7 @@ ext {
     jUnitVersion = "4.+"
     jUnitExtVersion = "1.1.2"
     espressoCoreVersion = "3.3.0"
+    okhttpVersion = '3.11.0'
 }
 
 buildscript {
