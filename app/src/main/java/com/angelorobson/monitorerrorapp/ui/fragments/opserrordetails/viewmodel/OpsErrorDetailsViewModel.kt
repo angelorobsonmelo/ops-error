@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.angelorobson.monitorerrorapp.models.OpsErrorDetailsModel
-import com.angelorobson.monitorerrorapp.models.OpsErrorModel
 import com.angelorobson.monitorerrorapp.usecases.OpsErrorsUseCase
 import com.angelorobson.monitorerrorapp.utils.NetworkResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi

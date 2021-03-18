@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.angelorobson.monitorerrorapp.models.OpsErrorDetailsModel
 import com.angelorobson.monitorerrorapp.models.OpsErrorModel
 import com.angelorobson.monitorerrorapp.ui.fragments.opserror.OpsErrorFragmentDirections
 import com.angelorobson.monitorerrorapp.usecases.OpsErrorsUseCase

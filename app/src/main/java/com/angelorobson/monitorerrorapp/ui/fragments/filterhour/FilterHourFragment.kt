@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.navArgs
 import com.angelorobson.monitorerrorapp.R
