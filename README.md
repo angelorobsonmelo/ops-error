@@ -3,6 +3,9 @@
 This app returns error counts and
 details of a monitoring system.
 
+# Demo
+<img src="demo/demo.gif" width="300" heigth="300">
+
 # Stacks
 * MVVM pattern (Model-View-Model)
 * Dependency Injection using Koin
@@ -16,6 +19,7 @@ details of a monitoring system.
 * Moshi
 * Safe Args
 * Material Design
+* Shimmer Recycler view
 * Support screen orientation changes without losing status
 * And others...
 
