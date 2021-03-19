@@ -1,30 +1,30 @@
-package com.angelorobson.monitorerrorapp.ui.fragments.opserror.viewmodel
+package com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.angelorobson.monitorerrorapp.models.OpsErrorModel
+import com.angelorobson.monitorerrorapp.models.OpsErrorDetailsModel
 import com.angelorobson.monitorerrorapp.usecases.OpsErrorsUseCase
-import com.angelorobson.monitorerrorapp.utils.NavigationNavigator
 import com.angelorobson.monitorerrorapp.utils.NetworkResult
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
-import io.mockk.verifyOrder
 import io.mockk.verifySequence
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.*
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-
+import java.util.*
 
 @ExperimentalCoroutinesApi
-class OpsErrorsViewModelTest {
+class OpsErrorDetailsViewModelTest {
 
 
     private val testDispatcher = TestCoroutineDispatcher()
@@ -35,22 +35,19 @@ class OpsErrorsViewModelTest {
     @MockK
     private lateinit var useCase: OpsErrorsUseCase
 
-    @RelaxedMockK
-    private lateinit var navigator: NavigationNavigator
-
 
     @RelaxedMockK
-    private lateinit var stateObserver: Observer<NetworkResult<List<OpsErrorModel>>>
+    private lateinit var stateObserver: Observer<NetworkResult<List<OpsErrorDetailsModel>>>
 
     @InjectMockKs
-    private lateinit var viewModel: OpsErrorsViewModel
+    private lateinit var viewModel: OpsErrorDetailsViewModel
 
     @Before
     fun setup() {
         MockKAnnotations.init(this, relaxed = true)
         Dispatchers.setMain(testDispatcher)
 
-        viewModel.getErrorResponse.observeForever(stateObserver)
+        viewModel.getErrorDetailsResponse.observeForever(stateObserver)
     }
 
     @After
@@ -60,17 +57,17 @@ class OpsErrorsViewModelTest {
     }
 
     @Test
-    fun getAutoList_WhenSuccess_informAutoListSuccessState()  {
+    fun getAutoList_WhenSuccess_informAutoListSuccessState() {
         val list = listOf(
-            OpsErrorModel(
-                source = "souce",
-                errorsCount = 5
+            OpsErrorDetailsModel(
+                name = "exception",
+                date = Date()
             )
         )
 
-        coEvery { useCase.getOpsErrors(4) } returns flowOf(list)
+        coEvery { useCase.getOpsErrorDetails("source", 4) } returns flowOf(list)
 
-        viewModel.getOpsErrors(4)
+        viewModel.getOpsErrorDetails("source", 4)
 
         verifySequence {
             stateObserver.onChanged(NetworkResult.Loading())
@@ -79,4 +76,3 @@ class OpsErrorsViewModelTest {
     }
 
 }
-
