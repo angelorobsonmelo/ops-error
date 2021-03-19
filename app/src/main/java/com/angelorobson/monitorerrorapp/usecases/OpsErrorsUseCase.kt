@@ -29,10 +29,12 @@ class OpsErrorsUseCase(
 
     fun getOpsErrorDetails(source: String, hour: Int): Flow<List<OpsErrorDetailsModel>> {
         return flow {
-                val items =
-                    repository.getOpsErrorDetail(source, hour)
-                        .map { item -> opsErrorDetailsConverter.convert(item) }
-                emit(items)
+            val items =
+                repository.getOpsErrorDetail(source, hour)
+                    .map { item -> opsErrorDetailsConverter.convert(item) }
+                    .sortedByDescending { it.date }
+
+            emit(items)
         }.flowOn(Dispatchers.IO)
     }
 }
