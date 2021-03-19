@@ -21,6 +21,8 @@ details of a monitoring system.
 * Material Design
 * Shimmer Recycler view
 * Support screen orientation changes without losing status
+* Unit test using JUnit, 
+* Mockk 
 * And others...
 
 
