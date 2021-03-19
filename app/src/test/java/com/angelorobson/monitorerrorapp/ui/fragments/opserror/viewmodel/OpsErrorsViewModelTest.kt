@@ -10,6 +10,8 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
+import io.mockk.verifyOrder
+import io.mockk.verifySequence
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
@@ -72,10 +74,12 @@ class OpsErrorsViewModelTest {
 
         coEvery { useCase.getOpsErrors(4) } returns flowOf(list)
 
-
         viewModel.getOpsErrors(4)
 
-        assert(viewModel.getErrorResponse.value?.data == list)
+        verifySequence {
+            stateObserver.onChanged(NetworkResult.Loading())
+            stateObserver.onChanged(NetworkResult.Success(list))
+        }
     }
 
 }
