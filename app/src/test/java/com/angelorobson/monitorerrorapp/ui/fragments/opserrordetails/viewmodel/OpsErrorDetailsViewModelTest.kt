@@ -13,7 +13,9 @@ import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.verifySequence
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -21,7 +23,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.util.*
+import java.util.Date
 
 @ExperimentalCoroutinesApi
 class OpsErrorDetailsViewModelTest {
@@ -57,7 +59,7 @@ class OpsErrorDetailsViewModelTest {
     }
 
     @Test
-    fun getAutoList_WhenSuccess_informAutoListSuccessState() {
+    fun getOpsErrorDetails_WhenSuccess_verifySequenceLoadingAndSuccess() {
         val list = listOf(
             OpsErrorDetailsModel(
                 name = "exception",
@@ -72,6 +74,24 @@ class OpsErrorDetailsViewModelTest {
         verifySequence {
             stateObserver.onChanged(NetworkResult.Loading())
             stateObserver.onChanged(NetworkResult.Success(list))
+        }
+    }
+
+    @Test
+    fun getOpsErrorDetails_WhenError_verifySequenceLoadingAndError() = runBlocking {
+        val error = "error"
+
+        coEvery { useCase.getOpsErrorDetails("source", 4) } returns callbackFlow {
+            throw Exception(
+                error
+            )
+        }
+
+        viewModel.getOpsErrorDetails("source", 4)
+
+        verifySequence {
+            stateObserver.onChanged(NetworkResult.Loading())
+            stateObserver.onChanged(NetworkResult.Error(error))
         }
     }
 

@@ -11,12 +11,15 @@ import io.mockk.coEvery
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
-import io.mockk.verifyOrder
 import io.mockk.verifySequence
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.*
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -38,12 +41,18 @@ class OpsErrorsViewModelTest {
     @RelaxedMockK
     private lateinit var navigator: NavigationNavigator
 
-
     @RelaxedMockK
     private lateinit var stateObserver: Observer<NetworkResult<List<OpsErrorModel>>>
 
     @InjectMockKs
     private lateinit var viewModel: OpsErrorsViewModel
+
+    private val list = listOf(
+        OpsErrorModel(
+            source = "souce",
+            errorsCount = 5
+        )
+    )
 
     @Before
     fun setup() {
@@ -60,14 +69,7 @@ class OpsErrorsViewModelTest {
     }
 
     @Test
-    fun getAutoList_WhenSuccess_informAutoListSuccessState()  {
-        val list = listOf(
-            OpsErrorModel(
-                source = "souce",
-                errorsCount = 5
-            )
-        )
-
+    fun getOpsErrors_WhenSuccess_verifySequenceLoadingAndSuccess() {
         coEvery { useCase.getOpsErrors(4) } returns flowOf(list)
 
         viewModel.getOpsErrors(4)
@@ -75,6 +77,19 @@ class OpsErrorsViewModelTest {
         verifySequence {
             stateObserver.onChanged(NetworkResult.Loading())
             stateObserver.onChanged(NetworkResult.Success(list))
+        }
+    }
+
+    @Test
+    fun getAutoList_WhenError_verifySequenceLoadingAndError() = runBlocking {
+        val error = "error"
+        coEvery { useCase.getOpsErrors(4) } returns callbackFlow { throw Exception(error) }
+
+        viewModel.getOpsErrors(4)
+
+        verifySequence {
+            stateObserver.onChanged(NetworkResult.Loading())
+            stateObserver.onChanged(NetworkResult.Error(error))
         }
     }
 
