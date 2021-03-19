@@ -33,8 +33,6 @@ class OpsErrorsUseCaseTest {
 
     private lateinit var opsErrorDetailsConverter: OpsErrorDetailsConverter
 
-    private val testDispatcher = TestCoroutineDispatcher()
-
     private lateinit var useCase: OpsErrorsUseCase
 
     @Before
@@ -47,8 +45,7 @@ class OpsErrorsUseCaseTest {
         useCase = OpsErrorsUseCase(
             repository,
             opsErrorConverter,
-            opsErrorDetailsConverter,
-            testDispatcher
+            opsErrorDetailsConverter
         )
     }
 

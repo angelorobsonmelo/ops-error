@@ -28,7 +28,7 @@ private val serviceModules = module(override = true) {
 
 @ExperimentalCoroutinesApi
 private val useCaseModules = module(override = true) {
-    factory { OpsErrorsUseCase(get(), get(), get(), Dispatchers.IO) }
+    factory { OpsErrorsUseCase(get(), get(), get()) }
 }
 
 @ExperimentalCoroutinesApi

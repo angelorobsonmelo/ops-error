@@ -9,11 +9,13 @@ import com.angelorobson.monitorerrorapp.ui.fragments.opserror.OpsErrorFragmentDi
 import com.angelorobson.monitorerrorapp.usecases.OpsErrorsUseCase
 import com.angelorobson.monitorerrorapp.utils.NavigationNavigator
 import com.angelorobson.monitorerrorapp.utils.NetworkResult
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
 class OpsErrorsViewModel(

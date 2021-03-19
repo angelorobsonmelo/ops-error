@@ -6,6 +6,7 @@ import com.angelorobson.monitorerrorapp.models.OpsErrorDetailsModel
 import com.angelorobson.monitorerrorapp.models.OpsErrorModel
 import com.angelorobson.monitorerrorapp.repository.OpsErrorRepository
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -16,7 +17,6 @@ class OpsErrorsUseCase(
     private val repository: OpsErrorRepository,
     private val opsErrorConverter: OpsErrorConverter,
     private val opsErrorDetailsConverter: OpsErrorDetailsConverter,
-    private val dispatcher: CoroutineDispatcher
 ) {
 
     fun getOpsErrors(hour: Int): Flow<List<OpsErrorModel>> {
@@ -24,7 +24,7 @@ class OpsErrorsUseCase(
             val items =
                 repository.getOpsErrors(hour).map { item -> opsErrorConverter.convert(item) }
             emit(items)
-        }.flowOn(dispatcher)
+        }.flowOn(Dispatchers.IO)
     }
 
     fun getOpsErrorDetails(source: String, hour: Int): Flow<List<OpsErrorDetailsModel>> {
@@ -33,6 +33,6 @@ class OpsErrorsUseCase(
                     repository.getOpsErrorDetail(source, hour)
                         .map { item -> opsErrorDetailsConverter.convert(item) }
                 emit(items)
-        }.flowOn(dispatcher)
+        }.flowOn(Dispatchers.IO)
     }
 }
