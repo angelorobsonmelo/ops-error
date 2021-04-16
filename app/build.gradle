@@ -21,6 +21,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    testOptions {
+        animationsDisabled = true
+        unitTests.includeAndroidResources = true
+    }
+
     buildFeatures {
         viewBinding true
         dataBinding true
@@ -121,6 +126,12 @@ dependencies {
     testImplementation "androidx.test:core:$androidxTestVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
     testImplementation "junit:junit:$jUnitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$jUnitExtVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+
+    debugImplementation 'androidx.test:core:' + rootProject.coreVersion
+    debugImplementation 'androidx.test.ext:junit:' + rootProject.extJUnitVersion
+    debugImplementation 'androidx.test:runner:' + rootProject.runnerVersion
+    debugImplementation 'androidx.test.espresso:espresso-core:' + rootProject.espressoVersion
+    debugImplementation 'androidx.fragment:fragment-testing:' + rootProject.androidxFragmentVersion
+    debugImplementation 'org.robolectric:annotations:' + rootProject.robolectricVersion
+
 }
