@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelorobson.monitorerrorapp.R
 import com.angelorobson.monitorerrorapp.databinding.FragmentOpsErrorBinding
-import com.angelorobson.monitorerrorapp.di.MonitorErrorComponent
+import com.angelorobson.monitorerrorapp.di.loadMonitorErrorModules
 import com.angelorobson.monitorerrorapp.models.OpsErrorModel
 import com.angelorobson.monitorerrorapp.ui.fragments.opserror.adapter.OpsErrorAdapter
 import com.angelorobson.monitorerrorapp.ui.fragments.opserror.viewmodel.OpsErrorsViewModel
@@ -85,7 +85,6 @@ class OpsErrorFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        MonitorErrorComponent.inject()
 
         getOpsErrors()
         bindViewModel()

@@ -18,7 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.angelorobson.monitorerrorapp.runner.TestApplicationRunner"
     }
 
     testOptions {
@@ -127,11 +127,17 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
     testImplementation "junit:junit:$jUnitVersion"
 
-    debugImplementation 'androidx.test:core:' + rootProject.coreVersion
-    debugImplementation 'androidx.test.ext:junit:' + rootProject.extJUnitVersion
+    def nav_version = "2.3.5"
+
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+
+    def fragment_version = "1.2.4"
+    // ...
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+    debugImplementation 'androidx.test.ext:junit-ktx:1.1.1'
     debugImplementation 'androidx.test:runner:' + rootProject.runnerVersion
-    debugImplementation 'androidx.test.espresso:espresso-core:' + rootProject.espressoVersion
-    debugImplementation 'androidx.fragment:fragment-testing:' + rootProject.androidxFragmentVersion
-    debugImplementation 'org.robolectric:annotations:' + rootProject.robolectricVersion
+    debugImplementation "org.koin:koin-test:$koinVersion"
+    debugImplementation "io.mockk:mockk-android:$mockkVersion"
+
 
 }
