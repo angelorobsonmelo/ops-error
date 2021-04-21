@@ -41,7 +41,7 @@
     </fragment>
     <dialog
         android:id="@+id/filterHourFragment"
-        android:name="com.angelorobson.monitorerrorapp.ui.fragments.filterhour.FilterHourFragment"
+        android:name="com.angelorobson.monitorerrorapp.ui.fragments.filterhour.FilterHourDialogFragment"
         android:label="fragment_filter_hour"
         tools:layout="@layout/fragment_filter_hour">
         <action

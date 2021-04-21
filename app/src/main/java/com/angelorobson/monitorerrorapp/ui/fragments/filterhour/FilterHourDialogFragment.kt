@@ -15,11 +15,11 @@ import com.angelorobson.monitorerrorapp.utils.NavigationNavigator
 import org.koin.android.ext.android.inject
 
 
-class FilterHourFragment : DialogFragment(), AdapterView.OnItemClickListener {
+class FilterHourDialogFragment : DialogFragment(), AdapterView.OnItemClickListener {
 
     private lateinit var binding: FragmentFilterHourBinding
     private val navigator: NavigationNavigator by inject()
-    private val args by navArgs<FilterHourFragmentArgs>()
+    private val args by navArgs<FilterHourDialogFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,7 +63,7 @@ class FilterHourFragment : DialogFragment(), AdapterView.OnItemClickListener {
         val item: String = parent?.getItemAtPosition(position).toString()
 
         navigator.to(
-            FilterHourFragmentDirections.filterHourFragmentToOpsErrorFragment(item.toInt())
+            FilterHourDialogFragmentDirections.filterHourFragmentToOpsErrorFragment(item.toInt())
         )
     }
 

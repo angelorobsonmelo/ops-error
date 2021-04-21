@@ -13,7 +13,6 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ops_error_row_materialCardView"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -26,13 +25,13 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/imageView"
+            app:layout_constraintEnd_toStartOf="@id/opsErrorArrowForwardImageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="MSTProc-FLEETPULS-SA" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/opsErrorArrowForwardImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

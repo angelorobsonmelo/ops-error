@@ -138,6 +138,8 @@ dependencies {
     debugImplementation 'androidx.test:runner:' + rootProject.runnerVersion
     debugImplementation "org.koin:koin-test:$koinVersion"
     debugImplementation "io.mockk:mockk-android:$mockkVersion"
+    debugImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+
 
 
 }

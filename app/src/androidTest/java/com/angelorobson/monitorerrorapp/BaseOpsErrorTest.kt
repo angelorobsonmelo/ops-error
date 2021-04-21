@@ -20,20 +20,18 @@ import org.koin.dsl.module
 open class BaseOpsErrorTest {
 
     @MockK
-    var useCase = mockk<OpsErrorsUseCase>(relaxed = true)
+    var useCase = mockk<OpsErrorsUseCase>()
 
     @MockK
-    var navigator = mockk<NavigationNavigator>(relaxed = true)
-
+    var navigator = mockk<NavigationNavigator>()
 
     lateinit var module: Module
-
 
     @Before
     fun setup() {
         MockKAnnotations.init(this, relaxed = true)
 
-        module = module(createdAtStart = true, override = true) {
+        module = module(override = true) {
             viewModel {
                 OpsErrorsViewModel(
                     useCase,

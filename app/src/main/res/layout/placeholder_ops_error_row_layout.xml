@@ -27,12 +27,12 @@
         android:layout_marginEnd="8dp"
         android:background="@color/mediumGray"
         app:layout_constraintBottom_toBottomOf="@+id/placeholder_ops_error_row_error_count_textView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/opsErrorArrowForwardImageView"
         app:layout_constraintStart_toEndOf="@+id/placeholder_ops_error_row_error_count_textView"
         app:layout_constraintTop_toTopOf="@+id/placeholder_ops_error_row_error_count_textView" />
 
     <View
-        android:id="@+id/imageView"
+        android:id="@+id/opsErrorArrowForwardImageView"
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:layout_marginEnd="8dp"
