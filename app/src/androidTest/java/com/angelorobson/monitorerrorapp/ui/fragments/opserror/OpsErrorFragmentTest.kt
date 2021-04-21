@@ -35,7 +35,7 @@ class OpsErrorFragmentTest : BaseOpsErrorTest() {
         launchFragment()
 
         opsErrorRobot {
-            visibleAutoRecycler()
+            visibleOpsErrorRecycler()
             notVisibleButtonTryAgain()
             visibleSourceErrorTextView()
             visibleArrowForwardImageView()
