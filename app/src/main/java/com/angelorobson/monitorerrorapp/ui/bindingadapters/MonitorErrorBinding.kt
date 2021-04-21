@@ -4,7 +4,7 @@ import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import com.angelorobson.monitorerrorapp.R
-import com.angelorobson.monitorerrorapp.utils.formatDateTime
+import com.angelorobson.monitorerrorapp.utils.extensions.date.formatDateTime
 import java.util.*
 
 class MonitorErrorBinding {

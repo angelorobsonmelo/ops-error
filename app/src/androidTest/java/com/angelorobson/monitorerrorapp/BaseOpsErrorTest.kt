@@ -1,6 +1,7 @@
 package com.angelorobson.monitorerrorapp
 
 import com.angelorobson.monitorerrorapp.ui.fragments.opserror.viewmodel.OpsErrorsViewModel
+import com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.viewmodel.OpsErrorDetailsViewModel
 import com.angelorobson.monitorerrorapp.usecases.OpsErrorsUseCase
 import com.angelorobson.monitorerrorapp.utils.NavigationNavigator
 import io.mockk.MockKAnnotations

@@ -16,6 +16,8 @@ import com.angelorobson.monitorerrorapp.ui.MainActivity
 import com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.adapter.OpsErrorDetailsAdapter
 import com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.viewmodel.OpsErrorDetailsViewModel
 import com.angelorobson.monitorerrorapp.utils.NetworkResult
+import com.angelorobson.monitorerrorapp.utils.extensions.android.gone
+import com.angelorobson.monitorerrorapp.utils.extensions.android.visible
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,10 +38,13 @@ class OpsErrorDetailsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity as MainActivity?)?.supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setHomeButtonEnabled(true)
+        if (activity is MainActivity) {
+            (activity as MainActivity?)?.supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setHomeButtonEnabled(true)
+            }
         }
+
     }
 
     override fun onCreateView(
@@ -143,19 +148,19 @@ class OpsErrorDetailsFragment : Fragment() {
     }
 
     private fun hideButtonTryAgain() {
-        binding.opsErrorDetailsTryAgainButton.visibility = View.GONE
+        binding.opsErrorDetailsTryAgainButton.gone()
     }
 
     private fun showButtonTryAgain() {
-        binding.opsErrorDetailsTryAgainButton.visibility = View.VISIBLE
+        binding.opsErrorDetailsTryAgainButton.visible()
     }
 
     private fun showGroupMainView() {
-        binding.groupErrorsDetailMainView.visibility = View.VISIBLE
+        binding.groupErrorsDetailMainView.visible()
     }
 
     private fun hideGroupMainView() {
-        binding.groupErrorsDetailMainView.visibility = View.GONE
+        binding.groupErrorsDetailMainView.gone()
     }
 
 }

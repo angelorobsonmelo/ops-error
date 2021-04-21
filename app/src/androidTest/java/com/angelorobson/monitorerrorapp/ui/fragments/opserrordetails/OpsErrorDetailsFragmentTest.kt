@@ -1,14 +1,14 @@
-package com.angelorobson.monitorerrorapp.ui.fragments.opserror
+package com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails
 
 import android.os.Bundle
 import androidx.fragment.app.testing.launchFragmentInContainer
-import androidx.navigation.testing.TestNavHostController
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.angelorobson.monitorerrorapp.BaseOpsErrorTest
 import com.angelorobson.monitorerrorapp.R
-import com.angelorobson.monitorerrorapp.models.OpsErrorModel
+import com.angelorobson.monitorerrorapp.models.OpsErrorDetailsModel
+import com.angelorobson.monitorerrorapp.ui.fragments.opserror.opsErrorRobot
 import com.angelorobson.monitorerrorapp.ui.fragments.opserror.viewmodel.OpsErrorsViewModel
+import com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.viewmodel.OpsErrorDetailsViewModel
 import com.angelorobson.monitorerrorapp.usecases.OpsErrorsUseCase
 import com.angelorobson.monitorerrorapp.utils.NavigationNavigator
 import io.mockk.MockKAnnotations
@@ -27,16 +27,15 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
+import java.util.*
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
-class OpsErrorFragmentTest  {
+class OpsErrorDetailsFragmentTest {
 
     @MockK
-    var useCase = mockk<OpsErrorsUseCase>()
+    lateinit var useCase: OpsErrorsUseCase
 
-    @MockK
-    var navigator = mockk<NavigationNavigator>()
 
     lateinit var module: Module
 
@@ -46,10 +45,7 @@ class OpsErrorFragmentTest  {
 
         module = module(override = true) {
             viewModel {
-                OpsErrorsViewModel(
-                    useCase,
-                    navigator
-                )
+                OpsErrorDetailsViewModel(useCase)
             }
         }
 
@@ -63,36 +59,39 @@ class OpsErrorFragmentTest  {
 
 
     private val list = listOf(
-        OpsErrorModel(
-            source = "souce",
-            errorsCount = 5
+        OpsErrorDetailsModel(
+            name = "exception",
+            date = Date()
         )
     )
 
 
     @Test
     fun test_show_all_widgets_onScreen() {
-        coEvery { useCase.getOpsErrors(4) } returns flowOf(list)
+        coEvery { useCase.getOpsErrorDetails("source", 4) } returns flowOf(list)
 
         launchFragment()
 
-        opsErrorRobot {
-            visibleOpsErrorTotalTextView()
-            visibleOpsErrorRecycler()
-            notVisibleButtonTryAgain()
+        opsErrorDetailsRobot {
+            visibleOpsErrorDetailsRecycler()
+            visibleDateTextView()
             visibleSourceErrorTextView()
-            visibleArrowForwardImageView()
-            visibleCountTextView()
+            notVisibleButtonTryAgain()
         }
     }
 
     @Test
     fun test_show_button_try_again_when_throw_exceptions() {
-        coEvery { useCase.getOpsErrors(4) } returns callbackFlow { throw Exception("error") }
+        coEvery {
+            useCase.getOpsErrorDetails(
+                "source",
+                4
+            )
+        } returns callbackFlow { throw Exception("error") }
 
         launchFragment()
 
-        opsErrorRobot {
+        opsErrorDetailsRobot {
             visibleButtonTryAgain()
         }
     }
@@ -100,9 +99,11 @@ class OpsErrorFragmentTest  {
     private fun launchFragment() {
         val args = Bundle().apply {
             putInt("hour", 4)
+            putString("source", "souce")
+            putString("title", "souce")
         }
 
-        launchFragmentInContainer<OpsErrorFragment>(
+        launchFragmentInContainer<OpsErrorDetailsFragment>(
             fragmentArgs = args, // Bundle
             themeResId = R.style.Theme_MaterialComponents_Light_NoActionBar
         )

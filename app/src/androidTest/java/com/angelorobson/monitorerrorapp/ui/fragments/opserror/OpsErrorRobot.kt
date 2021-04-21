@@ -16,6 +16,10 @@ class OpsErrorRobot : BaseRobot() {
         isVisible(R.id.ops_error_recyclerView)
     }
 
+    fun visibleOpsErrorTotalTextView() {
+        isVisible(R.id.ops_error_total_textView)
+    }
+
     fun visibleCountTextView(position: Int = 0) {
         onView(
             CoreMatchers.allOf(
