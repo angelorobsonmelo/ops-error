@@ -1,7 +1,6 @@
 package com.angelorobson.monitorerrorapp.ui.fragments.opserror
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.angelorobson.monitorerrorapp.BaseRobot
 import com.angelorobson.monitorerrorapp.R
@@ -26,10 +25,10 @@ class OpsErrorRobot : BaseRobot() {
                 isDescendantOfA(
                     withRecyclerView(R.id.ops_error_recyclerView).atPositionOnView(
                         position,
-                        R.id.placeholder_ops_error_row_source_textView
+                        R.id.ops_error_row_source_textView
                     )
                 ),
-                withId(R.id.placeholder_ops_error_row_source_textView),
+                withId(R.id.ops_error_row_source_textView),
                 isDisplayed()
             )
         )
@@ -56,10 +55,10 @@ class OpsErrorRobot : BaseRobot() {
                 isDescendantOfA(
                     withRecyclerView(R.id.ops_error_recyclerView).atPositionOnView(
                         position,
-                        R.id.opsErrorArrowForwardImageView
+                        R.id.ops_error_arrow_forward_image_view
                     )
                 ),
-                withId(R.id.opsErrorArrowForwardImageView),
+                withId(R.id.ops_error_arrow_forward_image_view),
                 isDisplayed()
             )
         )
