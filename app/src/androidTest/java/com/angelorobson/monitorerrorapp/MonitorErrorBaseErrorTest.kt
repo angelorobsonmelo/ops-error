@@ -18,13 +18,13 @@ import org.koin.dsl.module
 
 
 @ExperimentalCoroutinesApi
-open class BaseOpsErrorTest {
+open class MonitorErrorBaseErrorTest {
 
     @MockK
-    var useCase = mockk<OpsErrorsUseCase>()
+    var useCase = mockk<OpsErrorsUseCase>(relaxed = true)
 
     @MockK
-    var navigator = mockk<NavigationNavigator>()
+    var navigator = mockk<NavigationNavigator>(relaxed = true)
 
     lateinit var module: Module
 
@@ -34,11 +34,19 @@ open class BaseOpsErrorTest {
 
         module = module(override = true) {
             viewModel {
+                OpsErrorDetailsViewModel(
+                    useCase
+                )
+            }
+
+            viewModel {
                 OpsErrorsViewModel(
                     useCase,
                     navigator
                 )
             }
+
+
         }
 
         loadKoinModules(module)

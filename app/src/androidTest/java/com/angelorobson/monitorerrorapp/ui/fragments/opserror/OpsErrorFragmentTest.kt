@@ -2,10 +2,8 @@ package com.angelorobson.monitorerrorapp.ui.fragments.opserror
 
 import android.os.Bundle
 import androidx.fragment.app.testing.launchFragmentInContainer
-import androidx.navigation.testing.TestNavHostController
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.angelorobson.monitorerrorapp.BaseOpsErrorTest
+import com.angelorobson.monitorerrorapp.MonitorErrorBaseErrorTest
 import com.angelorobson.monitorerrorapp.R
 import com.angelorobson.monitorerrorapp.models.OpsErrorModel
 import com.angelorobson.monitorerrorapp.ui.fragments.opserror.viewmodel.OpsErrorsViewModel
@@ -30,36 +28,7 @@ import org.koin.dsl.module
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
-class OpsErrorFragmentTest  {
-
-    @MockK
-    var useCase = mockk<OpsErrorsUseCase>()
-
-    @MockK
-    var navigator = mockk<NavigationNavigator>()
-
-    lateinit var module: Module
-
-    @Before
-    fun setup() {
-        MockKAnnotations.init(this, relaxed = true)
-
-        module = module(override = true) {
-            viewModel {
-                OpsErrorsViewModel(
-                    useCase,
-                    navigator
-                )
-            }
-        }
-
-        loadKoinModules(module)
-    }
-
-    @After
-    fun cleanUp() {
-        unloadKoinModules(module)
-    }
+class OpsErrorFragmentTest: MonitorErrorBaseErrorTest()  {
 
 
     private val list = listOf(

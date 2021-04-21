@@ -3,14 +3,11 @@ package com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails
 import android.os.Bundle
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.angelorobson.monitorerrorapp.BaseOpsErrorTest
+import com.angelorobson.monitorerrorapp.MonitorErrorBaseErrorTest
 import com.angelorobson.monitorerrorapp.R
 import com.angelorobson.monitorerrorapp.models.OpsErrorDetailsModel
-import com.angelorobson.monitorerrorapp.ui.fragments.opserror.opsErrorRobot
-import com.angelorobson.monitorerrorapp.ui.fragments.opserror.viewmodel.OpsErrorsViewModel
 import com.angelorobson.monitorerrorapp.ui.fragments.opserrordetails.viewmodel.OpsErrorDetailsViewModel
 import com.angelorobson.monitorerrorapp.usecases.OpsErrorsUseCase
-import com.angelorobson.monitorerrorapp.utils.NavigationNavigator
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -31,31 +28,7 @@ import java.util.*
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(AndroidJUnit4::class)
-class OpsErrorDetailsFragmentTest {
-
-    @MockK
-    lateinit var useCase: OpsErrorsUseCase
-
-
-    lateinit var module: Module
-
-    @Before
-    fun setup() {
-        MockKAnnotations.init(this, relaxed = true)
-
-        module = module(override = true) {
-            viewModel {
-                OpsErrorDetailsViewModel(useCase)
-            }
-        }
-
-        loadKoinModules(module)
-    }
-
-    @After
-    fun cleanUp() {
-        unloadKoinModules(module)
-    }
+class OpsErrorDetailsFragmentTest: MonitorErrorBaseErrorTest() {
 
 
     private val list = listOf(
@@ -77,22 +50,6 @@ class OpsErrorDetailsFragmentTest {
             visibleDateTextView()
             visibleSourceErrorTextView()
             notVisibleButtonTryAgain()
-        }
-    }
-
-    @Test
-    fun test_show_button_try_again_when_throw_exceptions() {
-        coEvery {
-            useCase.getOpsErrorDetails(
-                "source",
-                4
-            )
-        } returns callbackFlow { throw Exception("error") }
-
-        launchFragment()
-
-        opsErrorDetailsRobot {
-            visibleButtonTryAgain()
         }
     }
 

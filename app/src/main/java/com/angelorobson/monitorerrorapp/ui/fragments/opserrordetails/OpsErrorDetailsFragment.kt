@@ -109,9 +109,9 @@ class OpsErrorDetailsFragment : Fragment() {
         viewModel.getErrorDetailsResponse.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is NetworkResult.Error -> {
-                    hideGroupMainView()
                     showButtonTryAgain()
                     hideShimmerEffect()
+                    hideGroupMainView()
                     Toast.makeText(requireContext(), result.message.toString(), Toast.LENGTH_SHORT)
                         .show()
                 }
