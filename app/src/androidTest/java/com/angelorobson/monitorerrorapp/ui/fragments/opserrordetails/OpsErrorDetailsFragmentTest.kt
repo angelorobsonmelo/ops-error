@@ -38,13 +38,15 @@ class OpsErrorDetailsFragmentTest: MonitorErrorBaseErrorTest() {
         )
     )
 
-
     @Test
     fun test_show_all_widgets_onScreen() {
+        // ARRANGE
         coEvery { useCase.getOpsErrorDetails("source", 4) } returns flowOf(list)
 
+        // ACT
         launchFragment()
 
+        // ASSERT
         opsErrorDetailsRobot {
             visibleOpsErrorDetailsRecycler()
             visibleDateTextView()

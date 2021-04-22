@@ -17,10 +17,9 @@ import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.Before
 import org.junit.Test
-import java.util.Date
+import java.util.*
 
 @InternalCoroutinesApi
 @ExperimentalCoroutinesApi

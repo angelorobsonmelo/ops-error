@@ -38,13 +38,15 @@ class OpsErrorFragmentTest: MonitorErrorBaseErrorTest()  {
         )
     )
 
-
     @Test
     fun test_show_all_widgets_onScreen() {
+        // ARRANGE
         coEvery { useCase.getOpsErrors(4) } returns flowOf(list)
 
+        // ACT
         launchFragment()
 
+        // ASSERT
         opsErrorRobot {
             visibleOpsErrorTotalTextView()
             visibleOpsErrorRecycler()
@@ -57,10 +59,13 @@ class OpsErrorFragmentTest: MonitorErrorBaseErrorTest()  {
 
     @Test
     fun test_show_button_try_again_when_throw_exceptions() {
+        // ARRANGE
         coEvery { useCase.getOpsErrors(4) } returns callbackFlow { throw Exception("error") }
 
+        // ACT
         launchFragment()
 
+        // ASSERT
         opsErrorRobot {
             visibleButtonTryAgain()
         }

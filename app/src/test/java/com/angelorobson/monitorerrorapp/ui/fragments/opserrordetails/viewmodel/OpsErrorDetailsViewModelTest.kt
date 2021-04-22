@@ -60,6 +60,7 @@ class OpsErrorDetailsViewModelTest {
 
     @Test
     fun getOpsErrorDetails_WhenSuccess_verifySequenceLoadingAndSuccess() {
+        // ARRANGE
         val list = listOf(
             OpsErrorDetailsModel(
                 name = "exception",
@@ -69,8 +70,10 @@ class OpsErrorDetailsViewModelTest {
 
         coEvery { useCase.getOpsErrorDetails("source", 4) } returns flowOf(list)
 
+        // ACT
         viewModel.getOpsErrorDetails("source", 4)
 
+        // ASSERT
         verifySequence {
             stateObserver.onChanged(NetworkResult.Loading())
             stateObserver.onChanged(NetworkResult.Success(list))
@@ -79,6 +82,7 @@ class OpsErrorDetailsViewModelTest {
 
     @Test
     fun getOpsErrorDetails_WhenError_verifySequenceLoadingAndError() = runBlocking {
+        // ARRANGE
         val error = "error"
 
         coEvery { useCase.getOpsErrorDetails("source", 4) } returns callbackFlow {
@@ -87,8 +91,10 @@ class OpsErrorDetailsViewModelTest {
             )
         }
 
+        // ACT
         viewModel.getOpsErrorDetails("source", 4)
 
+        // ASSERT
         verifySequence {
             stateObserver.onChanged(NetworkResult.Loading())
             stateObserver.onChanged(NetworkResult.Error(error))

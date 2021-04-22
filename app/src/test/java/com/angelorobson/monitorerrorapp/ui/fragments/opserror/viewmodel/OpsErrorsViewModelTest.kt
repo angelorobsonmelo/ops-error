@@ -70,10 +70,13 @@ class OpsErrorsViewModelTest {
 
     @Test
     fun getOpsErrors_WhenSuccess_verifySequenceLoadingAndSuccess() {
+        // ARRANGE
         coEvery { useCase.getOpsErrors(4) } returns flowOf(list)
 
+        // ACT
         viewModel.getOpsErrors(4)
 
+        // ASSERT
         verifySequence {
             stateObserver.onChanged(NetworkResult.Loading())
             stateObserver.onChanged(NetworkResult.Success(list))
@@ -82,11 +85,14 @@ class OpsErrorsViewModelTest {
 
     @Test
     fun getAutoList_WhenError_verifySequenceLoadingAndError() = runBlocking {
+        // ARRANGE
         val error = "error"
         coEvery { useCase.getOpsErrors(4) } returns callbackFlow { throw Exception(error) }
 
+        // ACT
         viewModel.getOpsErrors(4)
 
+        // ASSERT
         verifySequence {
             stateObserver.onChanged(NetworkResult.Loading())
             stateObserver.onChanged(NetworkResult.Error(error))
