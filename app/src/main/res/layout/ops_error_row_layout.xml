@@ -13,12 +13,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ops_error_row_materialCardView"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/placeholder_ops_error_row_source_textView"
+            android:id="@+id/ops_error_row_source_textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -26,23 +25,23 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/imageView"
+            app:layout_constraintEnd_toStartOf="@id/ops_error_arrow_forward_image_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="MSTProc-FLEETPULS-SA" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/ops_error_arrow_forward_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@id/placeholder_ops_error_row_error_count_textView"
+            app:layout_constraintBottom_toBottomOf="@id/ops_error_row_error_count_textView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/placeholder_ops_error_row_source_textView"
+            app:layout_constraintTop_toTopOf="@id/ops_error_row_source_textView"
             app:srcCompat="@drawable/ic_arrow_forward" />
 
         <TextView
-            android:id="@+id/placeholder_ops_error_row_error_count_textView"
+            android:id="@+id/ops_error_row_error_count_textView"
             totalExceptions="@{item.errorsCount}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -50,9 +49,9 @@
             android:layout_marginBottom="16dp"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/placeholder_ops_error_row_source_textView"
-            app:layout_constraintStart_toStartOf="@id/placeholder_ops_error_row_source_textView"
-            app:layout_constraintTop_toBottomOf="@id/placeholder_ops_error_row_source_textView"
+            app:layout_constraintEnd_toEndOf="@id/ops_error_row_source_textView"
+            app:layout_constraintStart_toStartOf="@id/ops_error_row_source_textView"
+            app:layout_constraintTop_toBottomOf="@id/ops_error_row_source_textView"
             tools:text="17 exceptions" />
 
 

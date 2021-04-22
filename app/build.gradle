@@ -18,7 +18,12 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.angelorobson.monitorerrorapp.runner.TestApplicationRunner"
+    }
+
+    testOptions {
+        animationsDisabled = true
+        unitTests.includeAndroidResources = true
     }
 
     buildFeatures {
@@ -121,6 +126,20 @@ dependencies {
     testImplementation "androidx.test:core:$androidxTestVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
     testImplementation "junit:junit:$jUnitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$jUnitExtVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+
+    def nav_version = "2.3.5"
+
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+
+    def fragment_version = "1.2.4"
+    // ...
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+    debugImplementation 'androidx.test.ext:junit-ktx:1.1.1'
+    debugImplementation 'androidx.test:runner:' + rootProject.runnerVersion
+    debugImplementation "org.koin:koin-test:$koinVersion"
+    debugImplementation "io.mockk:mockk-android:$mockkVersion"
+    debugImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+
+
+
 }

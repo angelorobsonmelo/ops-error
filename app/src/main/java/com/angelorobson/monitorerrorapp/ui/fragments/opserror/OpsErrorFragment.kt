@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelorobson.monitorerrorapp.R
 import com.angelorobson.monitorerrorapp.databinding.FragmentOpsErrorBinding
-import com.angelorobson.monitorerrorapp.di.MonitorErrorComponent
+import com.angelorobson.monitorerrorapp.di.loadMonitorErrorModules
 import com.angelorobson.monitorerrorapp.models.OpsErrorModel
 import com.angelorobson.monitorerrorapp.ui.fragments.opserror.adapter.OpsErrorAdapter
 import com.angelorobson.monitorerrorapp.ui.fragments.opserror.viewmodel.OpsErrorsViewModel
 import com.angelorobson.monitorerrorapp.utils.NetworkResult
+import com.angelorobson.monitorerrorapp.utils.extensions.android.gone
+import com.angelorobson.monitorerrorapp.utils.extensions.android.visible
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -85,7 +87,6 @@ class OpsErrorFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        MonitorErrorComponent.inject()
 
         getOpsErrors()
         bindViewModel()
@@ -130,19 +131,19 @@ class OpsErrorFragment : Fragment() {
     }
 
     private fun hideButtonTryAgain() {
-        binding.opsErrorTryAgainButton.visibility = View.GONE
+        binding.opsErrorTryAgainButton.gone()
     }
 
     private fun showButtonTryAgain() {
-        binding.opsErrorTryAgainButton.visibility = View.VISIBLE
+        binding.opsErrorTryAgainButton.visible()
     }
 
     private fun showGroupMainView() {
-        binding.groupOpsErrorMainView.visibility = View.VISIBLE
+        binding.groupOpsErrorMainView.visible()
     }
 
     private fun hideGroupMainView() {
-        binding.groupOpsErrorMainView.visibility = View.GONE
+        binding.groupOpsErrorMainView.gone()
     }
 
     private fun showShimmerEffect() {

@@ -29,7 +29,6 @@ class OpsErrorDetailsViewModel(private val useCase: OpsErrorsUseCase) : ViewMode
                 }
                 .catch {
                     _getErrorDetailsResponse.value = NetworkResult.Error(it.message)
-
                 }
                 .collect {
                     _getErrorDetailsResponse.value = NetworkResult.Success(it)

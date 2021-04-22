@@ -1,4 +1,4 @@
-package com.angelorobson.monitorerrorapp.utils
+package com.angelorobson.monitorerrorapp.utils.extensions.date
 
 import java.text.SimpleDateFormat
 import java.util.*
