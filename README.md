@@ -22,6 +22,7 @@ details of a monitoring system.
 * Shimmer Recycler view
 * Support screen orientation changes without losing status
 * Unit test using JUnit, 
+* Ui tests with Espresso and Robot pattern
 * Mockk 
 * And others...
 
